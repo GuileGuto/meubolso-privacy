@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Meu Bolso</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; color: #333; line-height: 1.7; }
+        h1 { color: #1565C0; }
+        h2 { color: #1976D2; margin-top: 32px; }
+        p { margin-bottom: 12px; }
+        ul { margin-bottom: 12px; }
+        li { margin-bottom: 6px; }
+        .date { color: #666; font-size: 14px; }
+        .highlight { background: #E3F2FD; padding: 16px; border-radius: 8px; border-left: 4px solid #1565C0; margin: 16px 0; }
+    </style>
+</head>
+<body>
+
+<h1>Política de Privacidade — Meu Bolso</h1>
+<p class="date">Última atualização: maio de 2026</p>
+
+<div class="highlight">
+    <strong>Resumo simples:</strong> O Meu Bolso lê suas notificações bancárias apenas para detectar gastos automaticamente. 
+    Todos os seus dados ficam armazenados somente no seu próprio dispositivo. 
+    Não coletamos, não vendemos e não compartilhamos seus dados financeiros com ninguém.
+</div>
+
+<h2>1. Quem somos</h2>
+<p>
+    O <strong>Meu Bolso</strong> é um aplicativo de controle financeiro pessoal desenvolvido para ajudar 
+    usuários a acompanhar seus gastos automaticamente através da leitura de notificações bancárias.
+</p>
+
+<h2>2. Quais dados o app acessa</h2>
+
+<h3>2.1 Notificações</h3>
+<p>
+    O Meu Bolso solicita permissão para acessar as notificações do seu dispositivo 
+    (<code>android.permission.BIND_NOTIFICATION_LISTENER_SERVICE</code>). Essa permissão é usada 
+    <strong>exclusivamente</strong> para:
+</p>
+<ul>
+    <li>Ler notificações de aplicativos bancários que você utiliza</li>
+    <li>Extrair automaticamente informações de transações financeiras (valor, estabelecimento)</li>
+    <li>Registrar gastos e entradas no seu histórico pessoal</li>
+</ul>
+<p>
+    O app <strong>não lê</strong> notificações de redes sociais, mensagens, e-mails ou qualquer outro 
+    tipo de aplicativo que não seja bancário.
+</p>
+
+<h3>2.2 Dados financeiros</h3>
+<p>Os seguintes dados podem ser registrados localmente no seu dispositivo:</p>
+<ul>
+    <li>Valor de transações detectadas em notificações bancárias</li>
+    <li>Nome do estabelecimento ou destinatário de transferências</li>
+    <li>Categoria do gasto (alimentação, transporte, etc.)</li>
+    <li>Data e hora da transação</li>
+    <li>Gastos fixos cadastrados manualmente pelo usuário</li>
+</ul>
+
+<h3>2.3 Chave de API (opcional)</h3>
+<p>
+    Se o usuário optar por utilizar análise por inteligência artificial, pode configurar uma chave de API 
+    do Google Gemini. Essa chave é armazenada de forma criptografada no dispositivo usando 
+    <code>EncryptedSharedPreferences</code> e é usada apenas para enviar o texto de notificações 
+    bancárias ao serviço do Google Gemini para análise. Consulte a 
+    <a href="https://policies.google.com/privacy" target="_blank">Política de Privacidade do Google</a> 
+    para entender como o Google trata esses dados.
+</p>
+
+<h2>3. Como os dados são armazenados</h2>
+<p>
+    <strong>Todos os seus dados financeiros são armazenados exclusivamente no seu dispositivo</strong>, 
+    em um banco de dados local (SQLite via Room). O Meu Bolso:
+</p>
+<ul>
+    <li>✅ Não possui servidores próprios</li>
+    <li>✅ Não envia seus dados financeiros para a internet</li>
+    <li>✅ Não sincroniza dados com a nuvem</li>
+    <li>✅ Não cria contas de usuário</li>
+    <li>✅ Não coleta dados analíticos ou de uso</li>
+</ul>
+<p>
+    Se você desinstalar o aplicativo, todos os seus dados serão permanentemente removidos do dispositivo.
+</p>
+
+<h2>4. Compartilhamento de dados</h2>
+<p>
+    O Meu Bolso <strong>não compartilha seus dados com terceiros</strong>, exceto nos casos abaixo, 
+    que dependem de ação explícita do usuário:
+</p>
+<ul>
+    <li>
+        <strong>Google Gemini API</strong> (opcional): Se o usuário configurar uma chave de API, 
+        o texto das notificações bancárias é enviado ao Google para análise. O usuário pode 
+        desativar essa funcionalidade a qualquer momento nas configurações do app.
+    </li>
+</ul>
+
+<h2>5. Segurança</h2>
+<p>Adotamos as seguintes medidas de segurança:</p>
+<ul>
+    <li>Autenticação biométrica (digital, PIN ou padrão) para acesso ao app</li>
+    <li>Chave de API armazenada com criptografia AES-256 via EncryptedSharedPreferences</li>
+    <li>Nenhum dado é transmitido sem consentimento explícito do usuário</li>
+</ul>
+
+<h2>6. Seus direitos</h2>
+<p>Você tem total controle sobre seus dados:</p>
+<ul>
+    <li><strong>Revogar acesso às notificações</strong>: Configurações do Android → Notificações → Acesso especial</li>
+    <li><strong>Excluir um gasto</strong>: Deslize o item para a esquerda na lista de transações</li>
+    <li><strong>Excluir todos os dados</strong>: Desinstale o aplicativo</li>
+    <li><strong>Desativar análise por IA</strong>: Configurações → remova a chave de API</li>
+</ul>
+
+<h2>7. Crianças</h2>
+<p>
+    O Meu Bolso não é destinado a menores de 18 anos e não coleta intencionalmente dados de crianças.
+</p>
+
+<h2>8. Alterações nesta política</h2>
+<p>
+    Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos sobre mudanças 
+    significativas por meio de uma atualização do aplicativo na Play Store. O uso continuado do app 
+    após as alterações constitui sua aceitação da nova política.
+</p>
+
+<h2>9. Contato</h2>
+<p>
+    Se você tiver dúvidas sobre esta Política de Privacidade ou sobre o tratamento dos seus dados, 
+    entre em contato pelo e-mail disponível na página do aplicativo na Google Play Store.
+</p>
+
+<hr style="margin-top: 40px; border-color: #E3F2FD;">
+<p style="color: #666; font-size: 13px; text-align: center;">
+    © 2026 Meu Bolso — Cada gasto conta.<br>
+    Esta política está disponível em: [URL do seu site ou GitHub Pages]
+</p>
+
+</body>
+</html>
