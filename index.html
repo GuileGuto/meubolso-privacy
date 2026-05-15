@@ -8,6 +8,7 @@
         body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; color: #333; line-height: 1.7; }
         h1 { color: #1565C0; }
         h2 { color: #1976D2; margin-top: 32px; }
+        h3 { color: #333; margin-top: 20px; }
         p { margin-bottom: 12px; }
         ul { margin-bottom: 12px; }
         li { margin-bottom: 6px; }
@@ -16,19 +17,18 @@
     </style>
 </head>
 <body>
-
 <h1>Política de Privacidade — Meu Bolso</h1>
 <p class="date">Última atualização: maio de 2026</p>
-
 <div class="highlight">
-    <strong>Resumo simples:</strong> O Meu Bolso lê suas notificações bancárias apenas para detectar gastos automaticamente. 
-    Todos os seus dados ficam armazenados somente no seu próprio dispositivo. 
-    Não coletamos, não vendemos e não compartilhamos seus dados financeiros com ninguém.
+    <strong>Resumo simples:</strong> O Meu Bolso lê suas notificações bancárias para detectar gastos automaticamente.
+    Seus dados ficam armazenados no seu próprio dispositivo. Para interpretar as notificações, o texto delas
+    é enviado temporariamente ao nosso servidor de processamento e ao Google Gemini — sem ser armazenado.
+    Não vendemos nem compartilhamos seus dados financeiros.
 </div>
 
 <h2>1. Quem somos</h2>
 <p>
-    O <strong>Meu Bolso</strong> é um aplicativo de controle financeiro pessoal desenvolvido para ajudar 
+    O <strong>Meu Bolso</strong> é um aplicativo de controle financeiro pessoal desenvolvido para ajudar
     usuários a acompanhar seus gastos automaticamente através da leitura de notificações bancárias.
 </p>
 
@@ -36,8 +36,8 @@
 
 <h3>2.1 Notificações</h3>
 <p>
-    O Meu Bolso solicita permissão para acessar as notificações do seu dispositivo 
-    (<code>android.permission.BIND_NOTIFICATION_LISTENER_SERVICE</code>). Essa permissão é usada 
+    O Meu Bolso solicita permissão para acessar as notificações do seu dispositivo
+    (<code>android.permission.BIND_NOTIFICATION_LISTENER_SERVICE</code>). Essa permissão é usada
     <strong>exclusivamente</strong> para:
 </p>
 <ul>
@@ -46,12 +46,12 @@
     <li>Registrar gastos e entradas no seu histórico pessoal</li>
 </ul>
 <p>
-    O app <strong>não lê</strong> notificações de redes sociais, mensagens, e-mails ou qualquer outro 
+    O app <strong>não lê</strong> notificações de redes sociais, mensagens, e-mails ou qualquer outro
     tipo de aplicativo que não seja bancário.
 </p>
 
 <h3>2.2 Dados financeiros</h3>
-<p>Os seguintes dados podem ser registrados localmente no seu dispositivo:</p>
+<p>Os seguintes dados são registrados localmente no seu dispositivo:</p>
 <ul>
     <li>Valor de transações detectadas em notificações bancárias</li>
     <li>Nome do estabelecimento ou destinatário de transferências</li>
@@ -60,27 +60,38 @@
     <li>Gastos fixos cadastrados manualmente pelo usuário</li>
 </ul>
 
-<h3>2.3 Chave de API (opcional)</h3>
+<h3>2.3 Processamento por inteligência artificial</h3>
 <p>
-    Se o usuário optar por utilizar análise por inteligência artificial, pode configurar uma chave de API 
-    do Google Gemini. Essa chave é armazenada de forma criptografada no dispositivo usando 
-    <code>EncryptedSharedPreferences</code> e é usada apenas para enviar o texto de notificações 
-    bancárias ao serviço do Google Gemini para análise. Consulte a 
-    <a href="https://policies.google.com/privacy" target="_blank">Política de Privacidade do Google</a> 
-    para entender como o Google trata esses dados.
+    Para interpretar o conteúdo das notificações bancárias, o app envia o <strong>texto da notificação</strong>
+    ao nosso servidor de processamento (hospedado na plataforma Render.com), que por sua vez utiliza o serviço
+    <strong>Google Gemini</strong> para extrair as informações da transação (valor, estabelecimento e tipo de pagamento).
+</p>
+<p>
+    Este processamento é <strong>temporário e sem armazenamento</strong>: os dados existem apenas durante
+    o ciclo de análise e são descartados imediatamente após a resposta. Nenhum texto de notificação é salvo
+    em banco de dados ou arquivos no servidor. Quando o dispositivo estiver sem conexão com a internet,
+    o app utiliza análise local por expressões regulares como alternativa.
+</p>
+<p>
+    Da mesma forma, imagens de comprovantes enviadas para leitura automática são processadas pelo servidor
+    e pelo Google Gemini de forma temporária, sem armazenamento.
+</p>
+<p>
+    Consulte a <a href="https://policies.google.com/privacy" target="_blank">Política de Privacidade do Google</a>
+    para entender como o Google trata os dados processados via Gemini API.
 </p>
 
 <h2>3. Como os dados são armazenados</h2>
 <p>
-    <strong>Todos os seus dados financeiros são armazenados exclusivamente no seu dispositivo</strong>, 
+    <strong>Todos os seus dados financeiros são armazenados exclusivamente no seu dispositivo</strong>,
     em um banco de dados local (SQLite via Room). O Meu Bolso:
 </p>
 <ul>
-    <li>✅ Não possui servidores próprios</li>
-    <li>✅ Não envia seus dados financeiros para a internet</li>
-    <li>✅ Não sincroniza dados com a nuvem</li>
+    <li>✅ Não armazena seus dados em servidores ou nuvem</li>
     <li>✅ Não cria contas de usuário</li>
     <li>✅ Não coleta dados analíticos ou de uso</li>
+    <li>✅ Não sincroniza dados com outros dispositivos</li>
+    <li>✅ Processa notificações de forma temporária, sem persistência no servidor</li>
 </ul>
 <p>
     Se você desinstalar o aplicativo, todos os seus dados serão permanentemente removidos do dispositivo.
@@ -88,14 +99,19 @@
 
 <h2>4. Compartilhamento de dados</h2>
 <p>
-    O Meu Bolso <strong>não compartilha seus dados com terceiros</strong>, exceto nos casos abaixo, 
-    que dependem de ação explícita do usuário:
+    O Meu Bolso <strong>não vende nem compartilha seus dados com terceiros para fins comerciais</strong>.
+    O envio de dados abaixo ocorre exclusivamente para o funcionamento do app:
 </p>
 <ul>
     <li>
-        <strong>Google Gemini API</strong> (opcional): Se o usuário configurar uma chave de API, 
-        o texto das notificações bancárias é enviado ao Google para análise. O usuário pode 
-        desativar essa funcionalidade a qualquer momento nas configurações do app.
+        <strong>Servidor de processamento (Render.com)</strong>: O texto das notificações bancárias é enviado
+        ao servidor do app para análise. O servidor não armazena esses dados — eles são descartados após
+        a resposta. A comunicação é protegida por autenticação.
+    </li>
+    <li>
+        <strong>Google Gemini API</strong>: O servidor repassa o texto da notificação ao Google Gemini para
+        extração das informações da transação. Esses dados são tratados de acordo com a
+        <a href="https://policies.google.com/privacy" target="_blank">Política de Privacidade do Google</a>.
     </li>
 </ul>
 
@@ -103,8 +119,10 @@
 <p>Adotamos as seguintes medidas de segurança:</p>
 <ul>
     <li>Autenticação biométrica (digital, PIN ou padrão) para acesso ao app</li>
-    <li>Chave de API armazenada com criptografia AES-256 via EncryptedSharedPreferences</li>
-    <li>Nenhum dado é transmitido sem consentimento explícito do usuário</li>
+    <li>Comunicação com o servidor protegida por chave secreta de aplicação</li>
+    <li>Dados locais armazenados no armazenamento privado do app (não acessível a outros apps)</li>
+    <li>Servidor de processamento sem banco de dados — nenhum dado pessoal é persistido</li>
+    <li>Logs do servidor não registram valores, estabelecimentos ou conteúdo financeiro</li>
 </ul>
 
 <h2>6. Seus direitos</h2>
@@ -112,8 +130,8 @@
 <ul>
     <li><strong>Revogar acesso às notificações</strong>: Configurações do Android → Notificações → Acesso especial</li>
     <li><strong>Excluir um gasto</strong>: Deslize o item para a esquerda na lista de transações</li>
-    <li><strong>Excluir todos os dados</strong>: Desinstale o aplicativo</li>
-    <li><strong>Desativar análise por IA</strong>: Configurações → remova a chave de API</li>
+    <li><strong>Apagar todos os dados</strong>: Configurações do app → "Apagar todos os dados"</li>
+    <li><strong>Excluir tudo e sair</strong>: Desinstale o aplicativo — todos os dados locais são removidos</li>
 </ul>
 
 <h2>7. Crianças</h2>
@@ -123,14 +141,14 @@
 
 <h2>8. Alterações nesta política</h2>
 <p>
-    Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos sobre mudanças 
-    significativas por meio de uma atualização do aplicativo na Play Store. O uso continuado do app 
+    Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos sobre mudanças
+    significativas por meio de uma atualização do aplicativo na Play Store. O uso continuado do app
     após as alterações constitui sua aceitação da nova política.
 </p>
 
 <h2>9. Contato</h2>
 <p>
-    Se você tiver dúvidas sobre esta Política de Privacidade ou sobre o tratamento dos seus dados, 
+    Se você tiver dúvidas sobre esta Política de Privacidade ou sobre o tratamento dos seus dados,
     entre em contato pelo e-mail disponível na página do aplicativo na Google Play Store.
 </p>
 
@@ -139,6 +157,5 @@
     © 2026 Meu Bolso — Cada gasto conta.<br>
     Esta política está disponível em: [URL do seu site ou GitHub Pages]
 </p>
-
 </body>
 </html>
